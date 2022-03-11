@@ -5,14 +5,18 @@ import Image from "next/image";
 export default function Home({ pokemon }) {
   return (
     <Layout title="NextJS Pokedex">
-      <h1 className="text-4xl mb-8 text-center">NextJS Pokedex</h1>
-      <ul>
+      <h1 className="text-4xl mb-8 text-center font-bold">NextJS Pokedex</h1>
+      <ul className="flex flex-wrap">
         {pokemon.map((pokeman, index) => (
           <li key={index}>
             <Link href={`/pokemon?id=${index + 1}`}>
-              <a>
-                <img src={pokeman.image} />
-                <span>{index + 1}.</span>
+              <a className="border m-2 p-4 border-gray my-2 capitalize flex flex-col m-0 items-center text-lg bg-gray-200 rounded-md">
+                <img
+                  className="w-40 h-40 mr-3"
+                  src={pokeman.image}
+                  alt="Pokemon"
+                />
+                <span className="mr-2 font-bold">N°{index + 1}</span>
                 {pokeman.name}
               </a>
             </Link>
