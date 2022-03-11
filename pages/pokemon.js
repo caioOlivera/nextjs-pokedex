@@ -3,7 +3,6 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 
 export default function pokemon({ pokeman }) {
-  console.log(pokeman);
   return (
     <Layout title={pokeman.name}>
       <div className="mx-auto w-3/5 bg-slate-100 border-2 border-black rounded flex flex-col items-center">
@@ -11,18 +10,24 @@ export default function pokemon({ pokeman }) {
         <h1 className="text-4xl mb-2 text-center capitalize font-bold">
           {pokeman.name}
         </h1>
-        <img className="h-96 w-96" src={pokeman.image} alt={pokeman.name} />
+        <img
+          className="h-96 w-96 md: h-max"
+          src={pokeman.image}
+          alt={pokeman.name}
+        />
       </div>
-      <h2 className="text-xl mt-6 mb-2">Info:</h2>
-      <p>
-        <span className="font-bold mr-2">Weight:</span>
+      <h2 className="text-xl mt-6 mb-2 md: text-center">Info:</h2>
+      <p className="md: text-center">
+        <span className="font-bold mr-2 md: text-center">Weight:</span>
         {(pokeman.weight / 10).toFixed(2)} Kg
       </p>
-      <span className="font-bold mr-2">Height:</span>
-      {(pokeman.height / 10).toFixed(2)} m
-      <h2 className="text-xl mt-6 mb-2">Type(s):</h2>
+      <p className="md: text-center">
+        <span className="font-bold mr-2 md: text-center">Height:</span>
+        {(pokeman.height / 10).toFixed(2)} m
+      </p>
+      <h2 className="text-xl mt-6 mb-2 md: text-center">Type(s):</h2>
       {pokeman.types.map((type, index) => (
-        <p key="index" className="capitalize">
+        <p key="index" className="capitalize md: text-center">
           • {type.type.name}
         </p>
       ))}

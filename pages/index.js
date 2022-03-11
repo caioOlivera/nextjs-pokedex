@@ -10,7 +10,7 @@ export default function Home({ pokemon }) {
       <h2 className="text-center">
         Made by Caio Oliveira. Inspired by James Q Quick video.
       </h2>
-      <ul className="flex flex-wrap">
+      <ul className="flex flex-wrap md: flex-col">
         {pokemon.map((pokeman, index) => (
           <li key={index}>
             <Link href={`/pokemon?id=${index + 1}`}>
