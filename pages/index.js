@@ -1,31 +1,56 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
-import Image from "next/image";
-import pokeball from "../public/pokeball-png-5a3a4a7e247ce7.9167778215137695981495.jpg";
+import { useState } from "react";
 
 export default function Home({ pokemon }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <Layout title="NextJS Pokedex">
       <h1 className="text-4xl mb-8 text-center font-bold">NextJS Pokedex</h1>
       <h2 className="text-center">
         Made by Caio Oliveira. Inspired by James Q Quick video.
       </h2>
-      <ul className="flex flex-wrap md: flex-col">
-        {pokemon.map((pokeman, index) => (
-          <li key={index}>
-            <Link href={`/pokemon?id=${index + 1}`}>
-              <a className="border m-2 p-4 border-gray my-2 capitalize flex flex-col items-center text-lg bg-gray-200 rounded-md">
-                <img
-                  className="w-40 h-40 mr-3"
-                  src={pokeman.image}
-                  alt="Pokemon"
-                />
-                <span className="mr-2 font-bold">N°{index + 1}</span>
-                {pokeman.name}
-              </a>
-            </Link>
-          </li>
-        ))}
+      <div className="flex my-2 justify-center">
+        <input
+          className="w-4/5  p-2 "
+          type="text"
+          placeholder="Buscar Pokemon"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+      </div>
+      <ul className="flex flex-wrap justify-center">
+        {
+          pokemon
+            ?.filter((pokemon) => {
+              if (searchTerm == "") {
+                return pokemon;
+              } else if (
+                pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return pokemon;
+              }
+            })
+            .map((pokeman, index) => (
+              <li key={index}>
+                <Link href={`/pokemon?id=${index + 1}`}>
+                  <a className="border m-2 p-4 border-gray my-2 capitalize flex flex-col items-center text-lg bg-gray-200 rounded-md">
+                    <img
+                      className="w-40 h-40 mr-3"
+                      src={pokeman.image}
+                      alt="Pokemon"
+                    />
+                    <span className="mr-2 font-bold">N°{index + 1}</span>
+                    {pokeman.name}
+                  </a>
+                </Link>
+              </li>
+            ))
+
+          //
+        }
       </ul>
     </Layout>
   );

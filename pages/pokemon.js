@@ -11,7 +11,7 @@ export default function pokemon({ pokeman }) {
           {pokeman.name}
         </h1>
         <img
-          className="h-96 w-96 md: h-max"
+          className="h-96 w-96 lg:h-max"
           src={pokeman.image}
           alt={pokeman.name}
         />
