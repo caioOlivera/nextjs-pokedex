@@ -1,11 +1,13 @@
 import Layout from "../components/layout";
 import Link from "next/link";
 import Image from "next/image";
+import pokeball from "../public/pokeball-png-5a3a4a7e247ce7.9167778215137695981495.jpg";
 
 export default function Home({ pokemon }) {
   return (
     <Layout title="NextJS Pokedex">
       <h1 className="text-4xl mb-8 text-center font-bold">NextJS Pokedex</h1>
+      <img className="mx-auto" src={pokeball} alt="pokeball" />
       <ul className="flex flex-wrap">
         {pokemon.map((pokeman, index) => (
           <li key={index}>
